@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Covid-19 Tracker App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: "Brush"),
-      home: SplashScreen(),
+      theme: ThemeData(fontFamily: "Dreaming"),
+      home: const SplashScreen(),
     );
   }
 }

@@ -81,10 +81,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Brush
+    - family: Dreaming
       fonts:
-        - asset: assets/fonts/Good Brush.ttf
-        - asset: assets/fonts/Good Brush.otf
+        # - asset: assets/fonts/Good Brush.ttf
+        - asset: assets/fonts/Dreaming.otf
           style: normal
   #   - family: Trajan Pro
   #     fonts:
