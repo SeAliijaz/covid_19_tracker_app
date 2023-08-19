@@ -1,3 +1,4 @@
+import 'package:covid_19_tracker_app/Screens/detail_screen.dart';
 import 'package:covid_19_tracker_app/Services/status_services.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/custom_text_field.dart';
@@ -44,21 +45,80 @@ class _CountriesListScreenState extends State<CountriesListScreen> {
                   );
                 } else {
                   return ListView.builder(
-                    itemCount: 5,
+                    itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                "${snapshot.data![index]["countryInfo"]["flag"]}"),
+                      String searchByName = snapshot.data![index]["country"];
+
+                      if (searchController.text.isEmpty) {
+                        return Card(
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) {
+                                return DetailScreen(
+                                  image: snapshot.data![index]["countryInfo"]
+                                      ["flag"],
+                                );
+                              }));
+                            },
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  "${snapshot.data![index]["countryInfo"]["flag"]}"),
+                            ),
+                            title: Text(
+                                "Country: ${snapshot.data![index]["country"]}"),
+                            subtitle: Text(
+                                "Cases: ${snapshot.data![index]["cases"]}"),
+                            trailing: const Text("Ali ijaz"),
                           ),
-                          title: Text(
-                              "Country: ${snapshot.data![index]["country"]}"),
-                          subtitle:
-                              Text("Cases: ${snapshot.data![index]["cases"]}"),
-                          trailing: const Text("Ali ijaz"),
-                        ),
-                      );
+                        );
+                      } else if (searchByName
+                          .toLowerCase()
+                          .contains(searchController.text.toLowerCase())) {
+                        return Card(
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  "${snapshot.data![index]["countryInfo"]["flag"]}"),
+                            ),
+                            title: Text(
+                                "Country: ${snapshot.data![index]["country"]}"),
+                            subtitle: Text(
+                                "Cases: ${snapshot.data![index]["cases"]}"),
+                            trailing: const Text("Ali ijaz"),
+                          ),
+                        );
+                      } else if (searchByName
+                          .toUpperCase()
+                          .contains(searchController.text.toUpperCase())) {
+                        return Card(
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  "${snapshot.data![index]["countryInfo"]["flag"]}"),
+                            ),
+                            title: Text(
+                                "Country: ${snapshot.data![index]["country"]}"),
+                            subtitle: Text(
+                                "Cases: ${snapshot.data![index]["cases"]}"),
+                            trailing: const Text("Ali ijaz"),
+                          ),
+                        );
+                      } else {
+                        return Card(
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  "${snapshot.data![index]["countryInfo"]["flag"]}"),
+                            ),
+                            title: Text(
+                                "Country: ${snapshot.data![index]["country"]}"),
+                            subtitle: Text(
+                                "Cases: ${snapshot.data![index]["cases"]}"),
+                            trailing: const Text("Ali ijaz"),
+                          ),
+                        );
+                      }
                     },
                   );
                 }
